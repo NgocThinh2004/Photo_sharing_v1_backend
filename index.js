@@ -9,7 +9,7 @@ const CommentRouter = require("./routes/CommentRouter");
 const path = require("path");
 app.use(express.json());
 dbConnect();
-
+app.set("trust proxy", 1);
 app.use(cors({
   origin: "http://localhost:3000", 
   credentials: true, 
@@ -21,8 +21,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // Đặt true khi dùng HTTPS
-      sameSite: "lax",
+      secure: true, // Đặt true khi dùng HTTPS
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000, // 1 ngày
     },
   })
